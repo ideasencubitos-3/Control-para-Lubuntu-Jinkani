@@ -1,0 +1,119 @@
+    <!-- ===============================================--><!--    Menu Content--><!-- ===============================================-->
+    <main class="main" id="top">
+      <nav class="navbar navbar-standard navbar-expand-lg fixed-top navbar-dark" data-navbar-darken-on-scroll="data-navbar-darken-on-scroll">
+        <div class="container"><a class="navbar-brand" href="index.html"><span class="text-white dark__text-white">Falcon</span></a><button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarStandard" aria-controls="navbarStandard" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+          <div class="collapse navbar-collapse scrollbar" id="navbarStandard">
+            <ul class="navbar-nav" data-top-nav-dropdowns="data-top-nav-dropdowns">
+              <li class="nav-item dropdown"><a class="nav-link " href="#" role="button"  aria-haspopup="true" aria-expanded="false" id="dashboards">Inicio</a>
+                
+              </li>
+              
+
+             
+            </ul>
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item d-flex align-items-center me-2">
+                <div class="dropdown theme-control-dropdown landing-drop"><a class="nav-link d-flex align-items-center dropdown-toggle " href="#" role="button" id="themeSwitchDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="d-none d-lg-block"><span class="fas fa-sun" data-theme-dropdown-toggle-icon="light"></span><span class="fas fa-moon" data-theme-dropdown-toggle-icon="dark"></span><span class="fas fa-adjust" data-theme-dropdown-toggle-icon="auto"></span></span><span class="d-lg-none">Cambiar tema</span></a>
+                  <div class="dropdown-menu dropdown-menu-end dropdown-caret border py-0 mt-1" aria-labelledby="themeSwitchDropdown">
+                    <div class="bg-white dark__bg-1000 rounded-2 py-2"><button class="dropdown-item link-600 d-flex align-items-center gap-2" type="button" value="light" data-theme-control="theme"><span class="fas fa-sun"></span>Claro<span class="fas fa-check dropdown-check-icon ms-auto text-600"></span></button><button class="dropdown-item link-600 d-flex align-items-center gap-2" type="button" value="dark" data-theme-control="theme"><span class="fas fa-moon" data-fa-transform=""></span>Oscuro<span class="fas fa-check dropdown-check-icon ms-auto text-600"></span></button><button class="dropdown-item link-600 d-flex align-items-center gap-2" type="button" value="auto" data-theme-control="theme"><span class="fas fa-adjust" data-fa-transform=""></span>Automático<span class="fas fa-check dropdown-check-icon ms-auto text-600"></span></button></div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navbarDropdownLogin" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Iniciar sesión</a>
+                <div class="dropdown-menu dropdown-caret dropdown-menu-end dropdown-menu-card" aria-labelledby="navbarDropdownLogin">
+                  <div class="card shadow-none navbar-card-login">
+                    <div class="card-body fs-10 p-4 fw-normal">
+                      <div class="row text-start justify-content-between align-items-center mb-2">
+                        <div class="col-auto">
+                          <h5 class="mb-0">Iniciar sesión</h5>
+                        </div>
+                        <div class="col-auto">
+                          <p class="fs-10 text-600 mb-0">o <a href="crear-cuenta">Crea una cuenta</a></p>
+                        </div>
+                      </div>
+                      <form id="formIniciar" method="post">
+                        <div class="mb-3">
+                          <div id="mostrardatos"></div>
+                        </div>
+                        <div class="mb-3"><input class="form-control" type="email"  name="correo" placeholder="Correo"></div>
+                        <div class="mb-3"><input class="form-control" minlength="6" maxlength="45" type="password" name="clave" placeholder="Contraseña" ></div>
+                        <div class="row flex-between-center">
+                          <div class="col-auto">
+                            <div class="form-check mb-0"><input class="form-check-input" type="checkbox" id="modal-checkbox" ><label class="form-check-label mb-0" for="modal-checkbox">Recuérdame</label></div>
+                          </div>
+                        </div>
+                        <input type="hidden" name="tipoform" value="cambiar-ruta">
+                        <div class="mb-3"><button class="btn btn-primary d-block w-100 mt-3" id="boton" type="submit" name="submit">Iniciar</button></div>
+                        <div class="mb-3">
+                          <div id="animacion"></div>
+                        </div>
+                      </form>
+                      
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item"><a class="nav-link" href="crear-cuenta" data-bs-toggle="modal" data-bs-target="#exampleModal">Regístrate</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-body p-4">
+              <div class="row text-start justify-content-between align-items-center mb-2">
+                <div class="col-auto">
+                  <h5 id="modalLabel">Registrate</h5>
+                </div>
+                <div class="col-auto">
+                  <p class="fs-10 text-600 mb-0">¿Tienes una cuenta? <a href="inicio-sesion">Inicia sesión</a></p>
+                </div>
+              </div>
+              <form id="formRegistrar" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                  <div id="mostrardatos1"></div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Selecciona imagen de perfil 300x300px*</label>
+                  <input type="file" class="form-control" name="archivo" accept="image/*" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Selecciona imagen portada 1600x600px*</label>
+                    <input type="file" class="form-control" name="archivo1" accept="image/*"required> 
+                </div>
+                <div class="mb-3"><input class="form-control" type="text" name="nombre" minlength="6" maxlength="15" autocomplete="on" placeholder="Nombre*" required></div>
+                <div class="mb-3"><input class="form-control" type="text" name="apellidos" minlength="6" maxlength="15" autocomplete="on" placeholder="Apellidos*" required></div>
+                <div class="mb-3"><input class="form-control" type="text" name="usuario" minlength="6" maxlength="30" autocomplete="on" placeholder="Usuario*" required></div>
+                <div class="mb-3"><input class="form-control" type="text" name="telefono" minlength="10" maxlength="10" autocomplete="on" placeholder="Teléfono*" required></div>
+                <div class="mb-3"><input class="form-control" type="text" name="youtube" maxlength="500"  autocomplete="on" placeholder="Link Youtube"></div>
+                <div class="mb-3"><input class="form-control" type="text" name="instagram" maxlength="500" autocomplete="on" placeholder="Link Instagram"></div>
+                <div class="mb-3"><input class="form-control" type="text" name="facebook" maxlength="500" autocomplete="on" placeholder="Link Facebook"></div>
+                <div class="mb-3"><input class="form-control" type="text" name="x" maxlength="500" autocomplete="on" placeholder="Link x"></div>
+                <div class="mb-3"><input class="form-control" type="text" name="tiktok" maxlength="500" autocomplete="on" placeholder="Link Tiktok"></div>
+                <div class="mb-3"><input class="form-control" type="text" name="pamba" maxlength="500" autocomplete="on" placeholder="Link Pamba"></div>
+                <div class="mb-3"><input class="form-control" type="text" name="web" maxlength="500" autocomplete="on" placeholder="Link Sitio web"></div>
+                <div class="mb-3">
+                  <label><b>¿Cuál es tu experiencia en el mundo culinario?*</b></label>
+                  <div id="Countdescripcion">100 caracteres restantes para descripción</div>
+                  <textarea class="form-control" name="descripcion" id="descripcion" maxlength="100" rows="4" cols="50" placeholder="Introduce descripción" required></textarea>
+                </div>
+                <div class="mb-3"><input class="form-control" type="email" name="correo" autocomplete="on" maxlength="50" placeholder="Correo*" required></div>
+                <div class="row gx-2">
+                  <div class="mb-3 col-sm-6"><input class="form-control" minlength="6" maxlength="45" type="password" name="clave" autocomplete="on" placeholder="Contraseña*" required></div>
+                  <div class="mb-3 col-sm-6"><input class="form-control" minlength="6" maxlength="45" type="password" name="clave1" autocomplete="on" placeholder="Confirma contraseña*" required></div>
+                </div>
+                <input type="hidden" name="tipoform" value="registrar">
+                <input type="hidden" name="tipoform1" value="cambiar-ruta">
+                <input type="hidden" name="privilegio" value="1">
+                <div class="form-check"><input class="form-check-input" type="checkbox" name="politicas" id="modal-register-checkbox" required><label class="form-label" for="modal-register-checkbox">Acepto los <a href="#!">términos  </a>y <a class="white-space-nowrap" href="#!">la política de privacidad</a></label></div>
+                <div class="mb-3"><button class="btn btn-primary d-block w-100 mt-3" id="boton1" type="submit" name="submit">Registrar</button></div>
+                <div id="animacion1"></div>
+              </form>
+            
+            </div>
+          </div>
+        </div>
+      </div>
+
+ <!-- ===============================================--><!--    Menu Content Fin--><!-- ===============================================-->

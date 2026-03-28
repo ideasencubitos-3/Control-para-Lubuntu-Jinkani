@@ -1,0 +1,95 @@
+.txtblanco {
+  color: white; /* Cambia esto por el color que desees */
+}
+
+.txtazul {
+    color: #5279e0; /* Usa el color predeterminado de los enlaces */
+    /*text-decoration: underline;*/
+    font-weight: 400; /* Para "semi-bold" */
+}
+
+
+.icon-blue {
+    color: #5279e0;
+}
+
+.icon-red {
+    color: #ff0000;
+}
+
+.icon-gray {
+    color: rgba(94, 110, 130, 1);
+}
+
+/************BOTONES-DENUNCIA-FEED*****************/
+.dropdown-form {
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown-form button {
+    display: block;
+    text-align: left;
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-form .btn-link {
+    padding: 0;
+    text-decoration: none;
+    color: inherit;
+}
+
+/*********FIN-BOTONES-DENUNCIA-FEED*****************/
+/***********FORM-EDITAR-USUARIO*******************/
+.imagen-perfil {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  object-fit: cover; /* Asegura que la imagen se ajuste bien en el contenedor redondo */
+  border: 5px solid lightblue; /* Define el borde azul claro */
+}
+/* Estilo de la imagen de portada */
+.imagen-portada {
+  width: 100%; /* Ocupa el ancho completo del contenedor */
+  height: 200px; /* Ajusta la altura según necesites */
+  object-fit: cover;
+  border-radius: 10px; /* Bordes opcionales para darle estilo */
+  margin-bottom: 15px; /* Espacio debajo de la imagen */
+}
+
+/* Alineación de botones y controles */
+.portada-container {
+  text-align: center; /* Centra la imagen si es necesario */
+}
+
+.mb-3 .form-label {
+  margin-top: 15px;
+}
+/********FIN-FORM-EDITAR-USUARIO*******************/
+
+/*********SPINER*******************/
+  @keyframes cargando {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .cargando {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: cargando 2s linear infinite;
+  }
+
+  /* Contenedor para centrar */
+  .centrar {
+    display: flex;
+    justify-content: center;  /* Centrado horizontal */
+    align-items: center;      /* Centrado vertical */
+    height: 100vh;            /* Ocupa todo el alto de la ventana */
+  }
+/**********************************/

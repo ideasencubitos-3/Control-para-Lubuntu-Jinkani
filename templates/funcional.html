@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Control Remoto</title>
+<style>
+body {
+  background:#121212; color:#fff; font-family:sans-serif;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; gap:10px; padding:10px;
+}
+button {
+  padding:10px 15px; margin:5px; border:none; border-radius:8px;
+  background:#1e88e5; color:#fff; font-size:18px; cursor:pointer;
+}
+button:hover { background:#1565c0; }
+.cruz { display:grid; grid-template-columns:repeat(3,70px); gap:5px; justify-content:center; }
+.keyboard { display:flex; flex-wrap:wrap; justify-content:center; max-width:400px; }
+.keyboard button { width:40px; margin:3px; background:#333; font-size:16px; }
+.mouse { display:flex; justify-content:center; gap:15px; margin-top:10px; }
+.shortcuts { display:flex; justify-content:center; gap:10px; margin-bottom:10px; }
+.shortcuts button { background:#4caf50; font-size:18px; }
+.control-keys { display:flex; justify-content:center; gap:10px; margin:10px 0; }
+.control-keys button { width:70px; height:50px; font-size:24px; background:#444; border-radius:10px; }
+.touchpad {
+  width:260px; height:160px; background:#222;
+  border-radius:10px; margin-top:15px;
+  border:2px solid #555;
+  touch-action:none;
+}
+.media-controls {
+  display:flex; justify-content:center; gap:10px; margin-top:10px;
+}
+.media-controls button {
+  width:70px; height:50px; font-size:22px;
+  background:#00695c; border:none; border-radius:10px; color:#fff;
+}
+.media-controls button:hover { background:#004d40; }
+</style>
+</head>
+<body>
+
+<h2>🖥️ Control Remoto PC</h2>
+
+<div class="shortcuts">
+  <button onclick="sendAction('brave')">🌐</button>
+  <button onclick="sendAction('vlc')">🎵</button>
+  <button onclick="sendAction('shutdown')">⚡</button>
+</div>
+
+<div class="cruz">
+  <div></div>
+  <button onclick="sendSpecial('up')">⬆️</button>
+  <div></div>
+  <button onclick="sendSpecial('left')">⬅️</button>
+  <button onclick="clickOK()">OK</button>
+  <button onclick="sendSpecial('right')">➡️</button>
+  <div></div>
+  <button onclick="sendSpecial('down')">⬇️</button>
+  <div></div>
+</div>
+
+<div class="media-controls">
+  <button onclick="sendMedia('prev')">⏮️</button>
+  <button onclick="sendMedia('playpause')">⏯️</button>
+  <button onclick="sendMedia('next')">⏭️</button>
+  <button onclick="sendMedia('volup')">🔊</button>
+  <button onclick="sendMedia('voldown')">🔉</button>
+</div>
+
+<div class="touchpad" id="touchpad"></div>
+
+<div class="mouse">
+  <button onclick="clickMouse('left')">🖱️ Izq</button>
+  <button onclick="clickMouse('right')">🖱️ Der</button>
+</div>
+
+<div class="control-keys">
+  <button onclick="sendSpecial('space')">␣</button>
+  <button onclick="sendSpecial('enter')">↩️</button>
+  <button onclick="sendSpecial('backspace')">⌫</button>
+</div>
+
+<div class="keyboard">
+  <script>
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split("");
+    document.write(letters.map(l => `<button onclick="sendKey('${l.toLowerCase()}')">${l}</button>`).join(""));
+  </script>
+</div>
+
+<script>
+const server = window.location.origin;
+
+function sendSpecial(key) {
+  fetch(`${server}/special`, {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({action:key})
+  });
+}
+
+function clickMouse(button) {
+  fetch(`${server}/click`, {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({button})
+  });
+}
+
+function clickOK() {
+  fetch(`${server}/click`, {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({button:'left'})
+  });
+}
+
+function sendKey(key) {
+  fetch(`${server}/key`, {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({key})
+  });
+}
+
+function sendAction(action) {
+  fetch(`${server}/action`, {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({action})
+  });
+}
+
+let touchStart = null;
+const touchpad = document.getElementById('touchpad');
+touchpad.addEventListener('touchstart', e => {
+  const t = e.touches[0];
+  touchStart = {x: t.clientX, y: t.clientY};
+});
+touchpad.addEventListener('touchmove', e => {
+  if (!touchStart) return;
+  const t = e.touches[0];
+  const dx = t.clientX - touchStart.x;
+  const dy = t.clientY - touchStart.y;
+  touchStart = {x: t.clientX, y: t.clientY};
+  fetch(`${server}/moveMouse`, {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({dx, dy})
+  });
+});
+
+function sendMedia(action) {
+  fetch(`${server}/media`, {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({action})
+  });
+}
+</script>
+
+</body>
+</html>
