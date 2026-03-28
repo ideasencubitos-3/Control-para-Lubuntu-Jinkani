@@ -1,18 +1,26 @@
+/***
+La forma fácil es usando install.sh 
 
-INSTALACIÓN DEL SISTEMA
+	chmod +x install.sh
+	./install.sh
+	
+Después, pasar al punto 9 para ejecutar la aplicación.
+La forma compleja es seguir los pasos del 1 al 9.
+/***
+1.INSTALACIÓN DEL SISTEMA
 
 	sudo apt install python3-pip python3-venv python3-evdev python3-tk -y
 
-CREAR ENTORNO VIRTUAL
+2.CREAR ENTORNO VIRTUAL
 
 	python3 -m venv venv
 	source venv/bin/activate
 
-INSTALAR DEPENDENCIAS:
+3.INSTALAR DEPENDENCIAS:
 
 	pip install -r requirements.txt
 
-CONFIGURAR MÓDULO UINPUT
+4.CONFIGURAR MÓDULO UINPUT
 
 	sudo modprobe uinput
 
@@ -24,7 +32,7 @@ SI NO EXISTE:
 
 	sudo modprobe uinput
 	
-CONFIGURAR PERMISOS PERMANENTES
+5.CONFIGURAR PERMISOS PERMANENTES
 
 	sudo nano /etc/udev/rules.d/99-uinput.rules
 	
@@ -37,18 +45,18 @@ APLICAR CAMBIOS:
 	sudo udevadm control --reload-rules
 	sudo udevadm trigger
 	
-AGREGAR USUARIO AL GRUPO INPUT
+6.AGREGAR USUARIO AL GRUPO INPUT
 	
 	sudo usermod -aG input javis
 	sudo reboot
 	
-DESPUÉS DEL REINICIO:
+7.DESPUÉS DEL REINICIO:
 
 	groups
 	
 DEBE APARECER UINPUT.
 
-PROBAR UINPUT SIN ROOT
+8.PROBAR UINPUT SIN ROOT
 
 	python3 - << "EOF"
 	import uinput
@@ -60,6 +68,6 @@ SALIDA ESPERADA:
 
 	OK: uinput funciona sin root
 	
-EJECUTAR LA APLICACIÓN
+9.EJECUTAR LA APLICACIÓN
 
 	python3 app.py
